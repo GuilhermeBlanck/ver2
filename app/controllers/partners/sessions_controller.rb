@@ -1,5 +1,5 @@
-class Users::SessionsController < Devise::SessionsController
-    skip_before_action :verify_signed_out_user, only: :destroy
+class Partners::SessionsController < Devise::SessionsController
+    # skip_before_action :verify_signed_out_partner, only: :destroy
     def create
     
         self.resource = warden.authenticate(auth_options)
@@ -13,8 +13,8 @@ class Users::SessionsController < Devise::SessionsController
     end
 
     def destroy
-        u = User.find(params[:user][:id]) if (params[:user].present? && params[:user][:id].present?)
-        if u&.nil? || params[:user][:token].nil? || params[:user][:token] != u.authentication_token
+        u = Partner.find(params[:partner][:id]) if (params[:partner].present? && params[:partner][:id].present?)
+        if u&.nil? || params[:partner][:token].nil? || params[:partner][:token] != u.authentication_token
             head(:unauthorized); return
         end
         u.authentication_token = nil
