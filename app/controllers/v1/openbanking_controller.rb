@@ -1,5 +1,11 @@
 class V1::OpenbankingController < ApplicationController
   before_action :validate_user_token
+
+  # This controller should request data from banks APIs,
+  # but seeing as these data can only be accessed by 
+  # another financial institution, it uses placeholder
+  # data from https://openbankingbrasil.atlassian.net/wiki
+
   def qualification
     data = JSON.parse PlaceholderInfo.find_by_name('qualification').data
     render json: {data: data[rand data.size]}
@@ -7,7 +13,27 @@ class V1::OpenbankingController < ApplicationController
 
   def identification
     data = JSON.parse PlaceholderInfo.find_by_name('identification').data
-    render json: {data: data[rand data.size]}
+    render json: {data: data}
+  end
+
+  def request_data_sharing
+    unless params[:info_type].nil?
+      pi = PlaceholderInfo.find_by_name(params[:info_type])
+
+      # Refresh if this data already exists
+      unless u.openbanking_infos.find_by_name(params[:info_type]).nil?
+        u.openbanking_infos.find_by_name(params[:info_type]).delete
+      end
+
+      unless pi.nil?
+        @u.openbanking_infos << OpenbankingInfo.create( pi.attributes.slice('name','data') )
+        render json: 'Information obtained successfully!'
+      else
+        render json: {message: 'Cant get info of type ' + params[:info_type]}, status: :no_content
+      end
+    else
+      render json: {message: 'Info type not informed!'}, status: :bad_request
+    end
   end
   
   private
@@ -19,4 +45,6 @@ class V1::OpenbankingController < ApplicationController
     end
     
   end
+
+  
 end

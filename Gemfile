@@ -34,6 +34,7 @@ group :development do
   gem 'spring'
 
   gem 'sqlite3', '~> 1.4'
+  gem 'byebug'
 end
 
 group :production do
