@@ -9,12 +9,12 @@ class PartnersControl::RegistrationsController < ApplicationController
   end
 
   def destroy
-    u = Partner.find(params[:partner][:id]) if (params[:partner].present? && params[:partner][:id].present?)
-    puts u.email
-    if u&.nil? || params[:partner][:token].nil? || params[:partner][:token] != u.authentication_token
+    @u = Partner.find(params[:partner][:id]) if (params[:partner].present? && params[:partner][:id].present?)
+    if @u&.nil? || params[:partner][:token].nil? || params[:partner][:token] != @u.authentication_token
           head(:unauthorized); return
       end
-    u.destroy
+    @u.destroy
+    render json: {message: 'Partner successfully deleted.'}
   end
 
   private

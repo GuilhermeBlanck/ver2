@@ -13,12 +13,12 @@ class Users::SessionsController < Devise::SessionsController
     end
 
     def destroy
-        u = User.find(params[:user][:id]) if (params[:user].present? && params[:user][:id].present?)
-        if u&.nil? || params[:user][:token].nil? || params[:user][:token] != u.authentication_token
+        @u = User.find(params[:user][:id]) if (params[:user].present? && params[:user][:id].present?)
+        if @u&.nil? || params[:user][:token].nil? || params[:user][:token] != @u.authentication_token
             head(:unauthorized); return
         end
-        u.authentication_token = nil
-        u.save
+        @u.authentication_token = nil
+        @u.save
         render json: {message: 'Session ended, token expired'}
     end
 
