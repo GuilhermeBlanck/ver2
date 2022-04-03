@@ -1,0 +1,2 @@
+class PlaceholderInfo < ApplicationRecord
+end

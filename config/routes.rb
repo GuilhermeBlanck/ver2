@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :v1 do
+    get 'openbanking/qualification'
+  end
   devise_for :users, only: [:sessions], controllers: {sessions: 'users/sessions'}
   devise_for :partners, only: [:sessions], controllers: {sessions: 'partners/sessions'}
   devise_for :admins, only: [:sessions], controllers: {sessions: 'admins/sessions'}
