@@ -19,6 +19,7 @@ Uso (para teste) No diretório raiz:
 ### Endpoints da API
 
 [Clique aqui para acessar os endpoints desta API](https://app.getpostman.com/join-team?invite_code=07290794c7e168fef1e5c2dafe30c9a6&target_code=d4579371b43ad35fef8eb87f20a710d4)
+O acesso às APIs só pode ser feito em https no ambiente production.
 
 Gems instaladas (além das padrão do Rails)
 
