@@ -36,4 +36,4 @@ Versão:
 1.0b A versão atual suporta o controle de usuários e o uso de token para acesso aos dados, porém os dados obtidos através dos endpoins do openbanking retornam
 informações padrão, obtidas através da documentação do OpenBanking Brasil, pois apenas as instituições financeiras podem obter acesso aos dados de clientes reais,     após autorização.
     
-[Também é possível acessar a API clicando aqui](https://safrapartners-backend-producti.herokuapp.com/)
+[Também é possível acessar a API clicando aqui](https://safrapartners-backend-staging.herokuapp.com/)
