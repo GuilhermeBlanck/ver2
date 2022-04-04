@@ -36,6 +36,14 @@ class V1::OpenbankingController < ApplicationController
     end
   end
   
+  def clear_expired_data
+    # Clear user OpenBanking data after its allowed period
+    # To be called by a job scheduler at least once a day
+    OpenbankingInfo.each do |obi|
+      obi.delete if obi.expiry_date > Time.now
+    end
+  end
+
   private
 
   def validate_user_token
