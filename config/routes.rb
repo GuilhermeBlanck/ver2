@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     get 'openbanking/qualification'
     get 'openbanking/identification'
     get 'openbanking/request_data_sharing'
+    get 'openbanking/clear_expired_data'
   end
   devise_for :users, only: [:sessions], controllers: {sessions: 'users/sessions'}
   devise_for :partners, only: [:sessions], controllers: {sessions: 'partners/sessions'}
