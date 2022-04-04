@@ -3,7 +3,8 @@
 O back-end cria a interface com a API open-bank Safra e com o banco de dados Safra Partners.
 ---
 
-Esta API foi desenvolvida com a intenção de trabalhar de forma conjunta com o app Safra Partners, funcionando de backend da aplicação. Este então oferece o controle de usuários, tanto clientes do banco quanto parceiros e administradores do sistema, manejando dados do OpenBanking e oferecendo o controle de ofertas e contratos entre usuários e parceiros.
+Esta API foi desenvolvida com a intenção de trabalhar de forma conjunta com o app Safra Partners, funcionando de backend da aplicação. Este então oferece o controle de usuários, tanto clientes do banco quanto parceiros e administradores do sistema, manejando dados do OpenBanking e oferecendo o controle de ofertas e contratos entre usuários e parceiros. Um diagrama da base de dados com as 
+relações pode ser vista no arquivo dbschema.pdf presente na raiz deste diretório.
 
 ---
 	
