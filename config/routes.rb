@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+
   namespace :v1 do
     get 'openbanking/qualification'
     get 'openbanking/identification'
     get 'openbanking/request_data_sharing'
     get 'openbanking/clear_expired_data'
+    
+    post 'proposals/create_user_proposal'
+    post 'proposals/create_partner_proposal'
   end
   devise_for :users, only: [:sessions], controllers: {sessions: 'users/sessions'}
   devise_for :partners, only: [:sessions], controllers: {sessions: 'partners/sessions'}

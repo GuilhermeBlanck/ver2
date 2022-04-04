@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_04_005548) do
+ActiveRecord::Schema.define(version: 2022_04_04_010250) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 2022_04_04_005548) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "agreements", force: :cascade do |t|
+    t.text "data"
+    t.integer "partner_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["partner_id"], name: "index_agreements_on_partner_id"
+    t.index ["user_id"], name: "index_agreements_on_user_id"
+  end
+
   create_table "openbanking_infos", force: :cascade do |t|
     t.string "name"
     t.text "data"
@@ -35,6 +45,14 @@ ActiveRecord::Schema.define(version: 2022_04_04_005548) do
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "expiry_date"
     t.index ["user_id"], name: "index_openbanking_infos_on_user_id"
+  end
+
+  create_table "parter_proposals", force: :cascade do |t|
+    t.text "data"
+    t.integer "partner_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["partner_id"], name: "index_parter_proposals_on_partner_id"
   end
 
   create_table "partners", force: :cascade do |t|
@@ -108,6 +126,9 @@ ActiveRecord::Schema.define(version: 2022_04_04_005548) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "agreements", "partners"
+  add_foreign_key "agreements", "users"
   add_foreign_key "openbanking_infos", "users"
+  add_foreign_key "parter_proposals", "partners"
   add_foreign_key "user_proposals", "users"
 end
